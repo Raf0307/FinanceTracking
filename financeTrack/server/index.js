@@ -6,11 +6,14 @@ const User = require('./models/User');
 const Expense = require('./models/Expense');
 const Goal = require('./models/Goal');
 const app = express();
+const authRouter = require('./routes/auth')
+const PORT = process.env.PORT || 5000
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', authRouter)
 
-const PORT = process.env.PORT || 5000
+
 
 const startServer = async () => {
     try {
