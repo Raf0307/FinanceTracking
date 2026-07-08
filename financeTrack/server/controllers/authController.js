@@ -61,9 +61,35 @@ module.exports = {
         }
     },
     logout: async (req, res) => {
-
+        res.status(200).json({
+            message: 'Logout succesful'
+        })
     },
     password: async (req, res) => {
-
+        try{
+            const { currentPassword, newPassword} = req.body;//grab the new and current passwords
+        const user = await User.findOne({ where: { id: req.user.id } });//Get the user based on the id 
+        const isMatch = await bcrypt.compare(currentPassword, user.password_hash);//check to see if the current password matches the stored hashed password
+        if(!isMatch){//if not a match then return a 401 error
+            res.status(401).json({
+                message: 'Incorrect Password'
+            })
+        }
+        else{//if it is a match then change the password_hash into the new password
+            const newPasswordHash = await bcrypt.hash(newPassword, 10); 
+            user.password_hash = newPasswordHash;
+            user.save()
+            res.status(200).json({
+                message: 'Password changed succesfully'
+            })
+        }
+        }
+        catch(error){
+            res.status(401).json({
+                message: 'An error occured',
+                error: error.message
+            })
+        }
+        
     }
 };
