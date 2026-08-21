@@ -1,5 +1,6 @@
 const { response } = require('express');
 const Expense = require('../models/Expense');
+const sequelize = require('../config/database');
 
 module.exports = {
     listExpenses: async (req, res) => {// lists all the expenses found for the user
@@ -96,15 +97,27 @@ module.exports = {
             }
         } catch (error) {
             res.status(500).json({
-                message: 'Unable to delete expense' + error
+                message: 'Unable to delete expense: ' + error
             })
         }
     },
     summary: async (req, res) => {
         try {
-
+            const summary = await Expense.findAll({
+                attributes: [
+                    'category',
+                    [sequelize.fn('SUM', sequelize.col('amount')), 'total']
+                ],
+                where: {user_id: req.user.id },
+                group: ['category']
+            })
+            res.status(200).json({
+                    summary: summary
+                })
         } catch (error) {
-
+            res.status(500).json({
+                message: 'Unable to return summary: ' + error
+            })
         }
     }
 }
