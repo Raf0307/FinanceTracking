@@ -1,7 +1,10 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Login from './pages/Login.jsx';
 import Dashboard from './pages/Dashboard.jsx'
+import Expenses from './pages/Expenses.jsx'
+import NewExpense from './pages/NewExpense.jsx'
 import Navbar from './components/Navbar.jsx'
+
 
 
 function App() {
@@ -13,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/expenses" element={<h1>Expenses</h1>} />
-        <Route path="/expenses/new" element={<h1>New Expense</h1>} />
+        <Route path="/expenses" element={<Expenses />} />
+        <Route path="/expenses/new" element={<NewExpense />} />
         <Route path="/expenses/:id/edit" element={<h1>Edit Expense</h1>} />
         <Route path="/goals" element={<h1>Goals</h1>} />
         <Route path="/goals/new" element={<h1>New Goal</h1>} />
