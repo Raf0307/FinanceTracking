@@ -21,6 +21,7 @@ function Expenses() {
             {expenses.map((item) => (
                 <div key={item.id}>
                     <p>{item.category}: ${item.amount}</p>
+                    <Link to={`/expenses/${item.id}/edit`}>Edit Expense</Link>
                 </div>
             ))}
             <Link to={"/expenses/new"}>Add new Expense</Link>

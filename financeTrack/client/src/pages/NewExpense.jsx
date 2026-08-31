@@ -6,7 +6,6 @@ function NewExpense() {
     const [category, setCategory] = useState('');
     const [expense_date, setExpenseDate] = useState('');
     const [description, setDescription] = useState('');
-
     async function handleSubmit() {
         try {
             const response = await api.post('/expenses', {
@@ -19,7 +18,7 @@ function NewExpense() {
         } catch (error) {
             console.log('Error with submitting Expense: ' + error);
         }
-    }
+    };
 
     return (
         <div>
