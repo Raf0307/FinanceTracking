@@ -90,10 +90,11 @@ module.exports = {
                     message: 'Record not found'
                 })
             } else {
-                goal.current_amount = goal.current_amount + amount;
-                goal.save();
+                goal.current_amount = parseFloat(goal.current_amount) + parseFloat(amount);
+                await goal.save();
                 res.status(200).json({
-                    message: 'Goal updated'
+                    message: 'Goal updated',
+                    goal: goal
                 })
             }
 

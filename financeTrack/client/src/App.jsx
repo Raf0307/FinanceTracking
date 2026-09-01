@@ -7,6 +7,7 @@ import NewExpense from './pages/NewExpense.jsx'
 import EditExpense from './pages/EditExpense.jsx'
 import Goals from './pages/Goals.jsx'
 import NewGoal from './pages/NewGoal.jsx'
+import GoalDetail from './pages/GoalDetail.jsx'
 import EditGoal from './pages/EditGoal.jsx'
 import Navbar from './components/Navbar.jsx'
 
@@ -26,7 +27,7 @@ function App() {
         <Route path="/expenses/:id/edit" element={<EditExpense />} />
         <Route path="/goals" element={<Goals />} />
         <Route path="/goals/new" element={<NewGoal />} />
-        <Route path="/goals/:id" element={<h1>Goals Details</h1>} />
+        <Route path="/goals/:id" element={<GoalDetail />} />
         <Route path="/goals/:id/edit" element={<EditGoal />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/" element={<Navigate to="/login" />} />

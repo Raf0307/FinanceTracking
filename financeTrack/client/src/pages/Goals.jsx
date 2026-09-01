@@ -21,7 +21,7 @@ function Goals(){
             {goals.map((item) => (
                 <div key={item.id}>
                     <p>{item.name}: {item.target_amount} - {item.current_amount} = {item.target_amount - item.current_amount}</p>
-                    <Link to={`/goals/${item.id}/edit`}>Edit Goal</Link>
+                    <Link to={`/goals/${item.id}/`}>View Goal</Link>
                 </div>
             ))}
             <Link to={"/goals/new"}>Add new Goal</Link>
