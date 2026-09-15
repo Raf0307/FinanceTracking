@@ -2,20 +2,20 @@ import { useState, useEffect } from "react";
 import api from '../api';
 import { Link } from "react-router-dom";
 
-function Goals(){
+function Goals() {
     const [goals, setGoals] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-        try {
-            const response = await api.get('/goals');
-            setGoals(response.data.goals);
-        } catch (error) {
-            console.log('Error retrieving data:' + error);
+            try {
+                const response = await api.get('/goals');
+                setGoals(response.data.goals);
+            } catch (error) {
+                console.log('Error retrieving data:' + error);
+            }
         }
-    }
-    fetchData()
+        fetchData()
     }, []);
-    return(
+    return (
         <div>
             <h1>Goals</h1>
             {goals.map((item) => (
@@ -26,7 +26,7 @@ function Goals(){
             ))}
             <Link to={"/goals/new"}>Add new Goal</Link>
         </div>
-    ) 
+    )
 };
 
 export default Goals;
