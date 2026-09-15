@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Container } from 'react-bootstrap';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -19,19 +20,16 @@ function Login() {
         }
     }
     return (
+        
         <div>
-            <h1>Login</h1>
-            <label for="login-email" >E-mail</label>
+            <Container>
             <input
-                id="login-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="E-mail"
+                placeholder="Email"
             />
-            <label for="login-password" >Password</label>
             <input
-                id="login-password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -39,6 +37,7 @@ function Login() {
             />
             <button onClick={handleSubmit}>LogIn</button>
             {error && <p>{error}</p>}
+        </Container>
         </div>
     );
 }
