@@ -1,25 +1,28 @@
 import { useState } from "react";
 import axios from "axios";
+import { Container } from 'react-bootstrap';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    async function handleSubmit(){
-        try{
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
-            email: email,
-            password: password
-        });
-        localStorage.setItem('token', response.data.token);
-        window.location.href = '/dashboard';
-    }catch(error){
-        setError('Invalid Email or Password')
-    }
+    async function handleSubmit() {
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/login', {
+                email: email,
+                password: password
+            });
+            localStorage.setItem('token', response.data.token);
+            window.location.href = '/dashboard';
+        } catch (error) {
+            setError('Invalid Email or Password')
+        }
     }
     return (
+        
         <div>
+            <Container>
             <input
                 type="email"
                 value={email}
@@ -27,14 +30,14 @@ function Login() {
                 placeholder="Email"
             />
             <input
-          
-          type="password"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
             <button onClick={handleSubmit}>LogIn</button>
             {error && <p>{error}</p>}
+        </Container>
         </div>
     );
 }
