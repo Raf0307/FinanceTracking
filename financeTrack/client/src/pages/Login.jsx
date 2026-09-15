@@ -6,29 +6,33 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    async function handleSubmit(){
-        try{
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
-            email: email,
-            password: password
-        });
-        localStorage.setItem('token', response.data.token);
-        window.location.href = '/dashboard';
-    }catch(error){
-        setError('Invalid Email or Password')
-    }
+    async function handleSubmit() {
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/login', {
+                email: email,
+                password: password
+            });
+            localStorage.setItem('token', response.data.token);
+            window.location.href = '/dashboard';
+        } catch (error) {
+            setError('Invalid Email or Password')
+        }
     }
     return (
         <div>
+            <h1>Login</h1>
+            <label for="login-email" >E-mail</label>
             <input
+                id="login-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
+                placeholder="E-mail"
             />
+            <label for="login-password" >Password</label>
             <input
-          
-          type="password"
+                id="login-password"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
